@@ -10,4 +10,4 @@ Download the docker-compose.yml file  to a directory on your docker host, then e
 docker-compose up -d
 ```
 
-The application will be available at http://<Your Docker Host IP>:8088
+The application will be available at http://"<Your Docker Host IP>":8088
