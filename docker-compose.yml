@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  mongodb:
+    image: mongo:latest
+    hostname: mongodb
+    volumes:
+      - mongodb_data_container:/data/db
+    restart: always
+
+  zorg-alert-system:
+    image: recklessop/zorg-alert-system:latest
+    hostname: zorg-alerts
+    ports:
+      - 8088:80
+    links:
+      - mongodb
+    restart: always
+
+volumes:
+  mongodb_data_container:
+
