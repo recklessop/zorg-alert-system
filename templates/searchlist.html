@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}" >
+	</head>
+<body>
+	<h1>{{h}}</h1>
+	<hr>
+	{% if todos[0] %}
+	<h3>Result of the Search : Zorg List</h3>
+	<table>
+	    <tr id="row">
+	    	<td class="name">Zorg Name</td>
+	    	<td class="zorgid">Zorg ID</td>
+	    	<td class="email">Email</td>
+		<td class="func">Delete</td>
+		<td class="func">Modify</td>
+	    </tr>
+		{% for todo in todos %}
+		<tr class="datas">
+			<td class="name">{{ todo["name"] }}</td>
+			<td class="zorgid">{{ todo["zorgid"] }}</td>
+			<td class="email">{{ todo["email"] }}</td>
+			<td class="func1"><a href="./remove?_id={{ todo['_id'] }}"><button type="submit">DELETE</button></a></td>
+			<td class="func1"><a href="./update?_id={{ todo['_id'] }}"><button type="submit">EDIT</button></a></td>
+		</tr>
+		{% endfor %}
+	{% else %}
+		<h4>No Result Found !!</h4>
+	{% endif %}
+	</table>
+	<a href="/">Return to Zorg List</a>
+</body>
+</html>

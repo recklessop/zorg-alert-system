@@ -1,0 +1,82 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+		<!-- href="/static/assets/style.css"-->
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}" >
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/emoji.css')}}" >
+		<script src="{{ url_for('static',filename='assets/twemoji.min.js')}}"></script>  
+		<script src="{{ url_for('static',filename='assets/emoji.js')}}"></script>
+	</head>
+<body>
+	<h1>{{ h }}</h1>
+	<ul>
+		<li><a href="/config" class="{{ a4 }}">Configuration</a></li>
+		<li><a href="/zvms" class="{{ a1 }}">ZVM List</a></li>
+		<li><a href="/" class="{{ a2 }}">Zorgs</a></li>
+		<li><a href="/alerts" class="{{ a3 }}">Alerts</a></li>
+	</ul>
+	<hr>
+	{% if todos[0] %}
+	<div span="right">
+	<form action="/search"	method="GET" >
+		<table class="none" id="close">
+		<tr>
+		<td></td><td></td>
+		<td><big><b>Search Reference:</b></big></td>
+		<td><select name="refer" required>
+			<option value="name">Zorg Name</option>
+			<option value="zorgid">Zorg ID</option>
+			<option value="email">Email</option>
+		</select></td>
+		<td><input type="text" name="key" placeholder="Search Zorgs" size="15" /></td>
+		<td><button type="submit">Search</button></td>
+		</tr>
+		</table>
+	</form>
+	</div>
+	<b><big>Zorg LIST :</big></b>
+	<table>
+	    <tr id="row">
+	    	<th class="name">Zorg Name</th>
+	    	<th class="zorgid">Zorg ID</th>
+			<th class="email">Email</th>
+			<th class="name">Email Enabled</th>
+			<th class="func2">Toggle Email</th>
+			<th class="func1">Remove</th>
+			<th class="func2">Modify</th>
+	    </tr>
+	{% for todo in todos %}
+		<tr class="datas">
+			<td class="name">{{ todo["name"] }}</td>
+			<td class="zorgid">{{ todo["zorgid"] }}</td>
+			<td class="email">{{ todo["email"] }}</td>
+			<td class="email">{{ todo["email_enabled"] }}</td>
+			<td class="func1"><a href="./disable?_id={{ todo['_id'] }}"><button type="submit">EMAIL TOGGLE</button></a></td>
+			<td class="func1"><a href="./remove?_id={{ todo['_id'] }}"><button type="submit">DELETE</button></a></td>
+			<td class="func1"><a href="./update?_id={{ todo['_id'] }}"><button type="submit">EDIT</button></a></td>
+		</tr>
+	{% endfor %}
+	</table>
+	{% else %}
+		<h4>No Tasks in the List !!</h4>
+	{% endif %}
+	<hr/>
+	<form action="/action" method="POST">
+	<table class="none">
+		<tr>
+			<td><b><big><label>Add a Zorg Manually : </label></big></b></td>
+		</tr>
+		<tr>
+		<td class="name" ><input type="text" name="name" placeholder="Zorg name" /></td>
+		<td class="zorgid"><textarea name="zorgid" placeholder="Paste Zerto Zorg ID here..." required></textarea></td>
+		<td class="email"><input type="text" name="email" placeholder="Email" /></td>
+		<td><button type="submit"> Create </button></td>
+		</tr>
+	</form>
+	</table>
+	<script>
+
+	</script>
+	<p>{{ debug }}</p>
+</body>
+</html>

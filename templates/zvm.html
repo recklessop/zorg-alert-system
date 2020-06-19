@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+		<!-- href="/static/assets/style.css"-->
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}" >
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/emoji.css')}}" >
+		<script src="{{ url_for('static',filename='assets/twemoji.min.js')}}"></script>  
+		<script src="{{ url_for('static',filename='assets/emoji.js')}}"></script>
+	</head>
+<body>
+	<h1>{{ h }}</h1>
+	<ul>
+		<li><a href="/config" class="{{ a4 }}">Configuration</a></li>
+		<li><a href="/zvms" class="{{ a1 }}">ZVM List</a></li>
+		<li><a href="/" class="{{ a2 }}">Zorgs</a></li>
+		<li><a href="/alerts" class="{{ a3 }}">Alerts</a></li>
+	</ul>
+	<hr>
+	{% if todos[0] %}
+	<b><big>CONNECTED ZVM LIST :</big></b>
+	<table>
+	    <tr id="row">
+	    	<th class="name">ZVM Site Name</th>
+	    	<th class="zorgid">ZVM Site Id</th>
+			<th class="email">ZVM Hostname</th>
+			<th class="email">ZVM Port</th>
+	    </tr>
+	{% for todo in todos %}
+		<tr class="datas">
+			<td class="name">{{ todo["zvmname"] }}</td>
+			<td class="zorgid">{{ todo["zvmid"] }}</td>
+			<td class="email">{{ todo["zvmhostname"] }}</td>
+			<td class="email">{{ todo["zvmport"] }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+	{% else %}
+		<h4>No ZVMs in the database !!</h4>
+	{% endif %}
+	<hr/>
+	</table>
+	<script>
+
+	</script>
+</body>
+</html>

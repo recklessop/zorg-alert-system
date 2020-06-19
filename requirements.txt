@@ -1,0 +1,10 @@
+APScheduler==3.6.3
+bcrypt==3.1.7
+configobj==5.0.6
+Flask==1.1.2
+pymongo==3.10.1
+requests==2.18.4
+requests-unixsocket==0.1.5
+uritools==1.0.2
+urllib3==1.22
+wheel

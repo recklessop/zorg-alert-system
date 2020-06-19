@@ -1,0 +1,123 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+		<!-- href="/static/assets/style.css"-->
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}" >
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/emoji.css')}}" >
+		<script src="{{ url_for('static',filename='assets/twemoji.min.js')}}"></script>  
+		<script src="{{ url_for('static',filename='assets/emoji.js')}}"></script>
+	</head>
+<body>
+	<h1>{{ h }}</h1>
+	<ul>
+		<li><a href="/config" class="{{ a4 }}">Configuration</a></li>
+		<li><a href="/zvms" class="{{ a1 }}">ZVM List</a></li>
+		<li><a href="/" class="{{ a2 }}">Zorgs</a></li>
+		<li><a href="/alerts" class="{{ a3 }}">Alerts</a></li>
+	</ul>
+	<hr>
+	{% if todos[0] %}
+	<b><big>ZCM Configuration :</big></b>
+	<table>
+	    <tr id="row">
+	    	<th class="name">ZCM Host</th>
+	    	<th class="zorgid">ZCM Port</th>
+			<th class="email">ZCM Username</th>
+			<th class="func2">Modify</th>
+	    </tr>
+	{% for todo in todos %}
+		<tr class="datas">
+			<td class="name">{{ todo["hostname"] }}</td>
+			<td class="zorgid">{{ todo["port"] }}</td>
+			<td class="email">{{ todo["username"] }}</td>
+			<td class="func1"><a href="./zcmupdate?_id={{ todo['_id'] }}"><button type="submit">EDIT</button></a></td>
+		</tr>
+	{% endfor %}
+	</table>
+	{% else %}
+		<h4>No ZCM Configured !!</h4>
+	<hr/>
+	<form action="/zcmadd" method="POST">
+	<table class="none">
+		<tr>
+			<td><b><big><label>Add a ZCM : </label></big></b></td>
+		</tr>
+		<tr>
+		<td class="name" ><input type="text" name="hostname" placeholder="myzcm.com" /></td>
+		<td class="name"><input type="text" name="port" value="9989" /></td>
+		<td class="name"><input type="text" name="username" placeholder="username" /></td>
+		<td class="name"><input type="password" name="password" /></td>
+		<td><button type="submit"> Save </button></td>
+		</tr>
+	</form>
+	</table>
+	{% endif %}
+
+	{% if smtps[0] %}
+	<hr>
+	<b><big>SMTP Configuration :</big></b>
+	<table class="smtp">
+	    <tr id="row">
+	    	<th class="name"></th>
+	    </tr>
+	{% for smtp in smtps %}
+		<tr class="datas">
+			<td class="name">SMTP Hostname</td><td class="name">{{ smtp["hostname"] }}</td>
+		<tr class="datas">	
+			<td class="name">Port</td><td class="zorgid">{{ smtp["port"] }}</td>
+		<tr class="datas">
+			<td class="name">Username</td><td class="email">{{ smtp["username"] }}</td>
+		<tr class="datas">
+			<td class="name">From Name</td><td class="name">{{ smtp["fromname"] }}</td>
+		<tr class="datas">
+			<td class="name">Reply To</td><td class="name">{{ smtp["replyto"] }}</td>
+		<tr class="datas">
+			<td class="name">Email Subject</td><td class="name">{{ smtp["subject"] }}</td>
+		<tr class="datas">
+			<td class="func1"><a href="./smtpupdate?_id={{ smtp['_id'] }}"><button type="submit">EDIT</button></a></td>
+		</tr>
+	{% endfor %}
+	</table>
+	{% else %}
+		<h4>No SMTP Configured !!</h4>
+	<hr/>
+	<form action="/smtpadd" method="POST">
+	<table class="none">
+		<tr>
+			<td><b><big><label>Add SMTP Information : </label></big></b></td>
+		</tr>
+		<tr>
+		<td>Hostname: <input type="text" name="hostname" placeholder="smtp.myserver.com" /></td>
+		</tr>
+		<tr>
+			<td>Port: <input type="text" name="port" value="465" /></td>
+		</tr>
+		<tr>
+			<td class="name">Username: <input type="text" name="username" placeholder="user@domain.com" /></td>
+		</tr>
+		<tr>
+			<td class="name">Password: <input type="password" name="password" /></td>
+		</tr>
+		<tr>
+			<td class="name">From Name: <input type="text" name="fromname" value="Zerto Alert System" /></td>
+		</tr>
+		<tr>
+			<td class="name">Reply To: <input type="text" name="replyto" placeholder="support@domain.com" /></td>
+		</tr>
+		<tr>
+			<td class="name">Email Subject: <input type="text" name="subject" value="Zerto Replication Alert!" /></td>
+		</tr>
+		<tr>
+			<td class="name">Send Installation Email to Maintainers? <input type="checkbox" name="install_email" value="True" checked /></td>
+		</tr>
+		<tr>
+			<td><button type="submit"> Save </button></td>
+		</tr>
+	</form>
+	</table>
+	{% endif %}
+	<script>
+
+	</script>
+</body>
+</html>

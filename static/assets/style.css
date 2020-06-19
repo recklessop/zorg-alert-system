@@ -1,0 +1,118 @@
+h1{
+/*	font-family:"Arial Black", Gadget, sans-serif;*/
+	font-family:"Times New Romans", Gadget, sans-serif;
+}
+
+body{
+	color:black;
+	background-color:white;
+	left-margin:10px;
+	right-margin:10px;
+}
+
+table{
+	width:95%;
+	border-collapse:collapse;
+	table-layout:fixed;
+}
+
+td
+{
+	border: rgba(224, 119, 70, 1) 2px solid;
+	word-wrap:break-word;
+}
+
+table#close{
+
+	table-layout:default;
+	border-collapse:seperate;
+	border-spacing: 5px 5px;
+	border:none;
+	vertical-align:top;
+}
+
+table.none
+{
+	border:none;
+	vertical-align:top;
+}
+
+table.smtp
+{
+	width:500px;
+	border:none;
+	vertical-align:top;
+}
+
+table.none td
+{
+	border: none;
+}
+
+tr.row td{
+	text-decoration:italic;
+}
+
+th.status{
+	width:10%;
+}
+
+th.name{
+	width:20%;
+}
+
+th.centered{
+	width:20%;
+	text-align:center;
+}
+
+th.zorgid{
+	width:25%;
+	padding:5px 5px 5px 5px;
+}
+
+th.email{
+	width:25%;
+}
+
+th.func1{
+	width:10%;
+}
+
+th.func2{
+	width:10%;
+}
+
+input[type=submit] {
+    width: 20em;  height: 2em;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+a.active {
+    background-color: #BC1F0F;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+
