@@ -127,7 +127,7 @@ def action ():
     name=request.values.get("name")
     zorgid=request.values.get("zorgid")
     email=request.values.get("email")
-    zorgdb.insert({ "name":name, "zorgid":zorgid, "email":email })
+    zorgdb.insert({ "name":name, "zorgid":zorgid, "email":email, 'email_enabled': True })
     return redirect("/list")
 
 @app.route("/zcmadd", methods=['POST'])
@@ -139,6 +139,8 @@ def zcmadd ():
     username=request.values.get("username")
     password=request.values.get("password")
     configdb.insert({ "type": "zcm", "hostname": hostname, "port": port, "username": username, "password": password })
+    importzvms()
+    importzorg()
     return redirect("/config")
 
 @app.route("/smtpadd", methods=['POST'])
@@ -210,7 +212,7 @@ def action3 ():
     id=request.values.get("id")
     email=request.values.get("email")
     id=request.values.get("_id")
-    zorgdb.update({"_id":ObjectId(id)}, {'$set':{ "name":name, "id":id, "email":email }})
+    zorgdb.update({"_id":ObjectId(id)}, {'$set':{ "name":name, "id":id, "email":email, 'email_enabled': True }})
     return redirect("/")
 
 @app.route("/action4", methods=['POST'])
@@ -223,6 +225,8 @@ def action4 ():
     port=request.values.get("port")
     id=request.values.get("_id")
     configdb.update({"_id":ObjectId(id)}, {'$set':{ "hostname": hostname, "port": port, "username": username, "password": password }})
+    importzvms()
+    importzorg()
     return redirect("/config")
 
 @app.route("/action5", methods=['POST'])
@@ -376,7 +380,7 @@ def importzorg ():
 
         if zorgdb.find({"zorgid": zorg['ZorgIdentifier']}).count() < 1:
             logger.debug("Zorg added to DB - " + zorg['ZorgIdentifier'] + " - " + zorg['Name'])
-            zorgdb.insert({ "zorgid": zorg['ZorgIdentifier'], "name": zorg['Name'], 'email_enabled': True })
+            zorgdb.insert({ "zorgid": zorg['ZorgIdentifier'], "name": zorg['Name'], 'email_enabled': False })
         else:
             logger.debug("Zorg already exists in DB - " + zorg['ZorgIdentifier'] + " - " + zorg['Name'])
 
