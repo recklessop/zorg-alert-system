@@ -24,7 +24,7 @@ The application will be available at http://"Your Docker Host IP":8088
 
 ## Recent Updates
 
-All recent updates can now be tracked via the [Change Log](https://github.com/ZertoPublic/recklessop/zorg-alert-system/CHANGELOG.md).
+All recent updates can now be tracked via the [Change Log](https://github.com/recklessop/zorg-alert-system/blob/master/CHANGELOG.md).
 
 ## TODO
 
