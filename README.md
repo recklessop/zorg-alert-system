@@ -1,4 +1,5 @@
 # zorg-alert-system
+[![Build status](https://dev.azure.com/ZertoTA/zorg-alert/_apis/build/status/zorg-alert-Docker%20container-CI)](https://dev.azure.com/ZertoTA/zorg-alert/_build/latest?definitionId=8)
 
 The Zorg Alert System is for use with the Zerto Cloud Manager. This repository contains the code used to build the Docker image. Deployment should be via Docker or Docker Compose.
 
